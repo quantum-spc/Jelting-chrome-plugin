@@ -15,17 +15,17 @@ if (!localStorage.isInitialized) {
   localStorage.isInitialized = true; // The option initialization.
 }
 
-// 3초마다 체크박스에 체크 되어 있을경우 갱신
+// 5초마다 체크박스에 체크 되어 있을경우 갱신
 setInterval(function() {
 	if (JSON.parse(localStorage.isActivated)) {
 		getChattingSync();
 	}
-}, 3000);
+}, 5000);
 
 // 신규 채팅이 있으면 알람을 띄운다.
 function getChattingSync() {
 	$.ajax({
-		url:'http://jelting.dothome.co.kr/MODEL/ChromePluginAlarm.php',
+		url:'http://elzz.shop/MODEL/ChromePluginAlarm',
 		dataType:'json',
 		success:function(data) {
 			if (data != 0) {
@@ -34,6 +34,7 @@ function getChattingSync() {
 		},
 		error:function(data) {
 			alert('error');
+			console.log(data);
 		}
 	});
 }
